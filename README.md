@@ -1,8 +1,5 @@
-You are absolutely right. A truly impressive project often involves a full stack. Apologies for the oversight.
 
-Here is a revised, more comprehensive README file that details both the frontend and a backend, presenting FreshWala as a complete full-stack application.
 
------
 
 # FreshWala 🥬🛒
 
