@@ -1,12 +1,14 @@
-Of course. Here’s a professional and impressive README file for your hackathon project, FreshWala.
+You are absolutely right. A truly impressive project often involves a full stack. Apologies for the oversight.
+
+Here is a revised, more comprehensive README file that details both the frontend and a backend, presenting FreshWala as a complete full-stack application.
 
 -----
 
 # FreshWala 🥬🛒
 
-> Bringing the farm-fresh goodness directly to your doorstep. A modern, fast, and intuitive web app for ordering fresh groceries.
+> Bringing the farm-fresh goodness directly to your doorstep. A modern, fast, and intuitive full-stack web app for ordering fresh groceries.
 
-A clean, responsive, and user-centric frontend experience built with React. This project was developed as part of the **[Your Hackathon Name]**.
+A complete MERN stack application featuring a user-centric frontend and a robust backend API. This project was developed as part of the **[Your Hackathon Name]**.
 
 **Live Demo:** `[Link to your deployed application]`
 
@@ -14,21 +16,22 @@ A clean, responsive, and user-centric frontend experience built with React. This
 
 ## ✨ Project Overview
 
-In today's fast-paced world, getting access to fresh, locally sourced produce can be a challenge. **FreshWala** is our solution—a digital bridge connecting local vendors and farmers with consumers. We aimed to create a seamless and delightful user experience for Browse products, managing a shopping cart, and discovering new items, all from the comfort of home.
+In today's fast-paced world, getting access to fresh, locally sourced produce can be a challenge. **FreshWala** is our solution—a digital bridge connecting local vendors and farmers with consumers. We built a full-stack application that provides a seamless and delightful user experience, from Browse products to placing a confirmed order.
 
-  * **Inspiration:** The goal was to empower local economies and promote healthy living through a user-friendly tech platform.
-  * **Core Idea:** A single-page application (SPA) that feels fast, responsive, and reliable.
+  * **Inspiration:** The goal was to empower local economies and promote healthy living through a complete, end-to-end tech platform.
+  * **Core Idea:** A monolithic repository containing a React Single-Page Application (SPA) and a Node.js REST API that work in tandem to deliver a fast, responsive, and reliable service.
 
 -----
 
 ## 🚀 Features
 
-  * **Dynamic Product Catalog:** Browse a wide variety of products fetched from our API.
-  * **Intuitive Category Filters:** Easily navigate through different sections like Vegetables, Fruits, and Dairy.
-  * **Real-time Search:** Instantly find the products you're looking for with a powerful search bar.
-  * **Interactive Shopping Cart:** Add, remove, and update quantities in your cart with immediate feedback.
-  * **Fully Responsive:** A beautiful and functional layout that works seamlessly on desktops, tablets, and mobile phones.
-  * **Modern UI/UX:** A clean, minimalist design focused on usability and a pleasant user journey.
+  * **Dynamic Product Catalog:** Browse products served from our robust backend API.
+  * **Secure User Authentication:** Safe and secure user registration and login using **JSON Web Tokens (JWT)**.
+  * **Persistent Shopping Cart:** The user's cart is saved to their account, allowing them to continue shopping across different sessions.
+  * **Protected Routes:** User-specific pages like Profile and Order History are protected and accessible only after logging in.
+  * **Order Placement:** A complete order submission flow that saves order details to the database.
+  * **Real-time Search & Filtering:** Instantly find products and filter by category with API-driven results.
+  * **Fully Responsive:** A beautiful layout that works seamlessly on all devices.
 
 *(Here you could add a GIF of your application in action)*
 `![FreshWala Demo GIF](link_to_your_app_demo.gif)`
@@ -37,60 +40,93 @@ In today's fast-paced world, getting access to fresh, locally sourced produce ca
 
 ## 🛠️ Tech Stack & Architecture
 
-We chose a modern, scalable, and efficient tech stack to bring this project to life.
+We chose the MERN stack for its cohesive JavaScript-based ecosystem, allowing for rapid development and scalability.
 
-  * **Frontend:** **React** (using Hooks and functional components for a declarative UI).
-  * **State Management:** **React Context API** for managing global state like the shopping cart, ensuring a lightweight and efficient solution.
-  * **Routing:** **React Router** for seamless client-side navigation between pages.
-  * **Styling:** **CSS Modules** to create locally-scoped, conflict-free styles for our components.
-  * **API Calls:** **Axios** for handling asynchronous HTTP requests to our backend/mock API.
-  * **Icons:** **React Icons** for a comprehensive and consistent set of icons.
+**Architecture:** `Client (React) <=> REST API (Node.js/Express) <=> Database (MongoDB)`
 
-Our architecture is based on a **component-driven design**, where the UI is broken down into small, reusable, and independent components. This approach made our development process faster and the codebase easier to maintain.
+### Frontend
+
+  * **Library/Framework:** **React** (using Hooks and functional components).
+  * **State Management:** **React Context API** for managing global state (auth status, cart).
+  * **Routing:** **React Router** for seamless client-side navigation.
+  * **Styling:** **CSS Modules** for locally-scoped, conflict-free component styles.
+  * **API Client:** **Axios** for handling asynchronous HTTP requests to our backend.
+
+### Backend
+
+  * **Runtime Environment:** **Node.js**
+  * **Framework:** **Express.js** for building the RESTful API.
+  * **Database:** **MongoDB** with **Mongoose** as the ODM for flexible and scalable data modeling.
+  * **Authentication:** **JSON Web Tokens (JWT)** for stateless, secure user authentication.
+  * **Security:** **bcrypt.js** for hashing user passwords before storing them in the database.
+  * **Environment Variables:** **`dotenv`** to manage secret keys and database URIs.
 
 -----
 
-## ⚙️ Getting Started
+## 🔌 API Endpoints
 
-To get a local copy up and running, follow these simple steps.
+Our API follows RESTful conventions. Here are some of the primary endpoints:
+
+| Method | Endpoint                | Description                     | Protected |
+| :----- | :---------------------- | :------------------------------ | :-------: |
+| `POST` | `/api/auth/register`    | Register a new user             |    No     |
+| `POST` | `/api/auth/login`       | Authenticate a user & get token |    No     |
+| `GET`  | `/api/products`         | Get all available products      |    No     |
+| `GET`  | `/api/products/:id`     | Get a single product by its ID  |    No     |
+| `POST` | `/api/orders`           | Place a new order               |    Yes    |
+| `GET`  | `/api/orders/myorders`  | Get the logged-in user's orders |    Yes    |
+
+-----
+
+## ⚙️ Local Development Setup
+
+To get a local copy up and running, follow these simple steps. The project is structured as a monorepo with `client` and `server` folders.
 
 ### Prerequisites
 
-Make sure you have Node.js and npm installed on your machine.
+Make sure you have Node.js, `npm`, and MongoDB installed and running on your machine.
 
-  * `npm`
-    ```sh
-    npm install npm@latest -g
-    ```
+### 1\. Setup Backend Server
 
-### Installation
+```sh
+# Go into the server directory
+cd server
 
-1.  Clone the repository:
-    ```sh
-    git clone https://github.com/[your-username]/FreshWala.git
-    ```
-2.  Navigate to the project directory:
-    ```sh
-    cd FreshWala
-    ```
-3.  Install NPM packages:
-    ```sh
-    npm install
-    ```
-4.  Start the development server:
-    ```sh
-    npm start
-    ```
-    Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) to view it in your browser.
+# Install dependencies
+npm install
+
+# Create a .env file in the /server root
+# Add the following variables (use your own values)
+# MONGO_URI=your_mongodb_connection_string
+# JWT_SECRET=a_very_secret_key
+
+# Start the backend server
+npm run dev
+```
+
+The server will be running on `http://localhost:5001`.
+
+### 2\. Setup Frontend Client
+
+```sh
+# Open a new terminal and go into the client directory
+cd client
+
+# Install dependencies
+npm install
+
+# Start the frontend React app
+npm start
+```
+
+The client will be running on `http://localhost:3000` and is pre-configured to proxy API requests to the backend server.
 
 -----
 
 ## 🌱 Future Scope
 
-Given more time, we would love to expand FreshWala's capabilities. Here are some ideas on our roadmap:
-
-  * **Full-fledged Backend:** Implement a Node.js/Express backend with a database (like MongoDB or PostgreSQL).
-  * **User Authentication:** Allow users to sign up, log in, and view their order history.
-  * **Payment Gateway Integration:** Integrate Stripe or Razorpay for secure and easy checkouts.
-  * **Real-time Order Tracking:** A feature to track the delivery status of an order.
-  * **Vendor Dashboard:** A separate portal for vendors to manage their products and inventory.
+  * **Payment Gateway Integration:** Integrate Stripe or Razorpay for real transactions.
+  * **Admin & Vendor Dashboards:** Create separate interfaces for administrators to manage users and for vendors to manage their inventory and orders.
+  * **Real-time Order Tracking:** Use WebSockets (e.g., with Socket.IO) for live order status updates.
+  * **Product Reviews & Ratings:** Allow users to rate and review products.
+  * **CI/CD Pipeline:** Implement a pipeline using GitHub Actions to automate testing and deployment.
