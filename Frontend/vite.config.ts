@@ -12,6 +12,14 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Output directory for the build (relative to Frontend folder)
     emptyOutDir: true, // Clean the output directory before build
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          icons: ['lucide-react', 'react-icons']
+        }
+      }
+    }
   },
   server: {
     port: 5173,
