@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || ['http://localhost:5173', 'http://localhost:5174', 'https://fresh-wala-tute-dude-hackathon-2fde8tp7v-uk1619s-projects.vercel.app'],
+  origin: process.env.FRONTEND_URL || ['https://fresh-wala-tute-dude-hackathon-2fde8tp7v-uk1619s-projects.vercel.app', 'http://localhost:5173', 'http://localhost:5174'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
