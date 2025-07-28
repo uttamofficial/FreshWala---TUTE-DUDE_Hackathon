@@ -5,11 +5,11 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors'); // Import the CORS package
 const app = express();
 
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./Routes/authRoutes');
 const orderRoutes = require('./Routes/orderRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes'); 
-const reviewRoutes = require('./routes/reviewRoutes');
+const productRoutes = require('./Routes/productRoutes');
+const cartRoutes = require('./Routes/cartRoutes'); 
+const reviewRoutes = require('./Routes/reviewRoutes');
 
 dotenv.config();
 app.use(express.json());
@@ -18,14 +18,15 @@ app.use(cookieParser());
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || ['http://localhost:5173', 'http://localhost:5174', 'https://your-app-name.vercel.app'],
+  origin: process.env.FRONTEND_URL || ['http://localhost:5173', 'http://localhost:5174', 'https://fresh-wala-tute-dude-hackathon-2fde8tp7v-uk1619s-projects.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
 
 app.use(cors(corsOptions));  // Apply the CORS policy
 
-const PORT = process.env.PORT || 5000;
+// Connect to database
+connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -34,11 +35,22 @@ app.use('/api/product', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/review', reviewRoutes);
 
-app.use((req, res, next) => {
-  res.status(404).json({ message: 'Not Found' });
+// Health check route
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ message: 'Backend is running on Vercel!' });
 });
 
-connectDB();
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'API endpoint not found' });
 });
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;

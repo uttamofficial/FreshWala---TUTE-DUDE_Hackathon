@@ -5,11 +5,11 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 // Import routes
-const authRoutes = require('../Backend/routes/authRoutes');
+const authRoutes = require('../Backend/Routes/authRoutes');
 const orderRoutes = require('../Backend/Routes/orderRoutes');
-const productRoutes = require('../Backend/routes/productRoutes');
-const cartRoutes = require('../Backend/routes/cartRoutes'); 
-const reviewRoutes = require('../Backend/routes/reviewRoutes');
+const productRoutes = require('../Backend/Routes/productRoutes');
+const cartRoutes = require('../Backend/Routes/cartRoutes'); 
+const reviewRoutes = require('../Backend/Routes/reviewRoutes');
 
 dotenv.config();
 
