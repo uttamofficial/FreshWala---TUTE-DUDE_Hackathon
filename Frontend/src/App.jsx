@@ -13,6 +13,8 @@ import Signup from './components/Signup';
 import Profile from './components/Profile';
 import Cart from './components/Cart';
 import SellerDashboard from './components/SellerDashboard';
+import MyOrders from './components/MyOrders';
+import BrowseProducts from './components/BrowseProducts';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
+          <Route path="/browse-products" element={<BrowseProducts />} />
         </Routes>
       </div>
     </Router>

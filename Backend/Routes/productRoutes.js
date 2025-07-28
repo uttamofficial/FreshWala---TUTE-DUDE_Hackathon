@@ -10,6 +10,7 @@ const {
   toggleProductStatus,
   getSellerProducts,
   searchProducts,
+  searchByCategory,
 } = require("../Controllers/productController");
 const createUploader = require("../middleware/upload");
 
@@ -53,6 +54,8 @@ router.get(
   protectedSeller,
   getSellerProducts
 );
+
+router.get('/searchByCategory', searchByCategory);
 
 router.post("/searchProducts", searchProducts);
 

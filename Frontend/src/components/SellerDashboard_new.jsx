@@ -192,6 +192,7 @@ const SellerDashboard = () => {
             ))}
           </div>
         </div>
+
         {/* Add Product Form */}
         {activeTab === 'Add Product' && (
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-green-200/50 p-8 shadow-2xl">
@@ -200,18 +201,15 @@ const SellerDashboard = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Product Name</label>
-                  <div className="relative">
-                    <input 
-                      type="text" 
-                      name="name" 
-                      value={form.name} 
-                      onChange={handleAddChange} 
-                      className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Enter product name..."
-                      required 
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                  </div>
+                  <input 
+                    type="text" 
+                    name="name" 
+                    value={form.name} 
+                    onChange={handleAddChange} 
+                    className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
+                    placeholder="Enter product name..."
+                    required 
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Category</label>
@@ -223,21 +221,20 @@ const SellerDashboard = () => {
                       className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 appearance-none"
                       required
                     >
-                      <option value="" className="bg-white">Select Category</option>
-                      <option value="vegetables" className="bg-white">🥬 Vegetables</option>
-                      <option value="fruits" className="bg-white">🍎 Fruits</option>
-                      <option value="spices" className="bg-white">🌶️ Spices</option>
-                      <option value="grains" className="bg-white">🌾 Grains</option>
-                      <option value="dairy" className="bg-white">🥛 Dairy</option>
-                      <option value="packaged" className="bg-white">📦 Packaged</option>
-                      <option value="others" className="bg-white">🔍 Others</option>
+                      <option value="">Select Category</option>
+                      <option value="vegetables">🥬 Vegetables</option>
+                      <option value="fruits">🍎 Fruits</option>
+                      <option value="spices">🌶️ Spices</option>
+                      <option value="grains">🌾 Grains</option>
+                      <option value="dairy">🥛 Dairy</option>
+                      <option value="packaged">📦 Packaged</option>
+                      <option value="others">🔍 Others</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <svg className="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                   </div>
                 </div>
               </div>
@@ -254,19 +251,18 @@ const SellerDashboard = () => {
                       className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 appearance-none"
                       required
                     >
-                      <option value="" className="bg-white">Select Unit</option>
-                      <option value="kg" className="bg-white">kg</option>
-                      <option value="l" className="bg-white">l</option>
-                      <option value="ml" className="bg-white">ml</option>
-                      <option value="pcs" className="bg-white">pcs</option>
-                      <option value="gm" className="bg-white">gm</option>
+                      <option value="">Select Unit</option>
+                      <option value="kg">kg</option>
+                      <option value="l">l</option>
+                      <option value="ml">ml</option>
+                      <option value="pcs">pcs</option>
+                      <option value="gm">gm</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <svg className="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -285,24 +281,20 @@ const SellerDashboard = () => {
                       required 
                       min="0" 
                     />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Quantity Available</label>
-                  <div className="relative">
-                    <input 
-                      type="number" 
-                      name="quantityAvailable" 
-                      value={form.quantityAvailable} 
-                      onChange={handleAddChange} 
-                      className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
-                      placeholder="0"
-                      required 
-                      min="0" 
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                  </div>
+                  <input 
+                    type="number" 
+                    name="quantityAvailable" 
+                    value={form.quantityAvailable} 
+                    onChange={handleAddChange} 
+                    className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
+                    placeholder="0"
+                    required 
+                    min="0" 
+                  />
                 </div>
               </div>
 
@@ -310,34 +302,28 @@ const SellerDashboard = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Discount (%)</label>
-                  <div className="relative">
-                    <input 
-                      type="number" 
-                      name="discount" 
-                      value={form.discount} 
-                      onChange={handleAddChange} 
-                      className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
-                      placeholder="0"
-                      min="0" 
-                      max="100" 
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                  </div>
+                  <input 
+                    type="number" 
+                    name="discount" 
+                    value={form.discount} 
+                    onChange={handleAddChange} 
+                    className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
+                    placeholder="0"
+                    min="0" 
+                    max="100" 
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Description</label>
-                  <div className="relative">
-                    <input 
-                      type="text" 
-                      name="description" 
-                      value={form.description} 
-                      onChange={handleAddChange} 
-                      className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Product description..."
-                      required 
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                  </div>
+                  <input 
+                    type="text" 
+                    name="description" 
+                    value={form.description} 
+                    onChange={handleAddChange} 
+                    className="w-full px-4 py-4 rounded-xl bg-green-50 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
+                    placeholder="Product description..."
+                    required 
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-green-700 mb-2">Product Image</label>
@@ -347,7 +333,7 @@ const SellerDashboard = () => {
                     accept="image/*" 
                     onChange={handleAddChange} 
                     ref={imageInputRef} 
-                    className="w-full px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-green-500 file:text-white hover:file:bg-green-600 transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-green-500 file:text-white hover:file:bg-green-600 transition-all duration-300"
                   />
                 </div>
                 <div className="flex items-end pb-2">
@@ -418,7 +404,7 @@ const SellerDashboard = () => {
 
               {/* Error and Success Messages */}
               {addError && (
-                <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-4 rounded-xl backdrop-blur-xl">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl">
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -429,7 +415,7 @@ const SellerDashboard = () => {
               )}
               
               {addSuccess && (
-                <div className="bg-green-500/10 border border-green-500/30 text-green-400 px-6 py-4 rounded-xl backdrop-blur-xl">
+                <div className="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-xl">
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -441,6 +427,7 @@ const SellerDashboard = () => {
             </form>
           </div>
         )}
+
         {/* My Products Section */}
         {activeTab === 'My Products' && (
           <div className="space-y-6">
@@ -453,7 +440,7 @@ const SellerDashboard = () => {
               </div>
             ) : productsError ? (
               <div className="text-center py-20">
-                <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-4 rounded-xl backdrop-blur-xl inline-block">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl inline-block">
                   <div className="flex items-center space-x-2">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -469,7 +456,7 @@ const SellerDashboard = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                   </svg>
                   <h3 className="text-xl font-semibold text-green-700 mb-2">No Products Found</h3>
-                  <p className="text-green-600/70">Start by adding your first product to the inventory</p>
+                  <p className="text-gray-600">Start by adding your first product to the inventory</p>
                 </div>
               </div>
             ) : (
@@ -487,7 +474,7 @@ const SellerDashboard = () => {
                         alt={product.name} 
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
                       {/* Status Badge */}
                       <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm ${
@@ -501,7 +488,7 @@ const SellerDashboard = () => {
 
                     {/* Product Info */}
                     <div className="space-y-3">
-                      <h3 className="text-xl font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">
                         {product.name}
                       </h3>
                       
@@ -510,21 +497,21 @@ const SellerDashboard = () => {
                       </p>
 
                       <div className="grid grid-cols-2 gap-3 text-sm">
-                        <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                        <div className="bg-green-50 rounded-lg p-2">
                           <span className="text-green-600 font-medium">Category:</span>
-                          <div className="text-gray-800 capitalize">{product.category}</div>
+                          <div className="text-gray-900 capitalize">{product.category}</div>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                        <div className="bg-green-50 rounded-lg p-2">
                           <span className="text-green-600 font-medium">Price:</span>
-                          <div className="text-gray-800 font-bold">₹{product.pricePerUnit}/{product.unit}</div>
+                          <div className="text-gray-900 font-bold">₹{product.pricePerUnit}/{product.unit}</div>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                        <div className="bg-green-50 rounded-lg p-2">
                           <span className="text-green-600 font-medium">Stock:</span>
-                          <div className="text-gray-800">{product.quantityAvailable}</div>
+                          <div className="text-gray-900">{product.quantityAvailable}</div>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                        <div className="bg-green-50 rounded-lg p-2">
                           <span className="text-green-600 font-medium">Discount:</span>
-                          <div className="text-gray-800">{product.discount}%</div>
+                          <div className="text-gray-900">{product.discount}%</div>
                         </div>
                       </div>
 
@@ -556,14 +543,14 @@ const SellerDashboard = () => {
 
                       {/* Edit Form */}
                       {editId === product._id && (
-                        <div className="mt-6 p-4 bg-green-50/80 rounded-xl border border-green-200/50 backdrop-blur-sm animate-fadeIn">
+                        <div className="mt-6 p-4 bg-green-50 rounded-xl border border-green-200 animate-fadeIn">
                           <form className="space-y-4" onSubmit={handleEditProduct}>
                             <input 
                               type="text" 
                               name="name" 
                               value={editForm.name || ''} 
                               onChange={handleEditChange} 
-                              className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                              className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                               placeholder="Product name..."
                               required 
                             />
@@ -572,7 +559,7 @@ const SellerDashboard = () => {
                               name="description" 
                               value={editForm.description || ''} 
                               onChange={handleEditChange} 
-                              className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                              className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                               placeholder="Description..."
                               required 
                             />
@@ -582,7 +569,7 @@ const SellerDashboard = () => {
                                 name="pricePerUnit" 
                                 value={editForm.pricePerUnit || ''} 
                                 onChange={handleEditChange} 
-                                className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                                 placeholder="Price..."
                                 required 
                                 min="0" 
@@ -592,7 +579,7 @@ const SellerDashboard = () => {
                                 name="quantityAvailable" 
                                 value={editForm.quantityAvailable || ''} 
                                 onChange={handleEditChange} 
-                                className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                                 placeholder="Quantity..."
                                 required 
                                 min="0" 
@@ -604,7 +591,7 @@ const SellerDashboard = () => {
                                 name="discount" 
                                 value={editForm.discount || ''} 
                                 onChange={handleEditChange} 
-                                className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                                className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                                 placeholder="Discount %..."
                                 min="0" 
                                 max="100" 
@@ -614,7 +601,7 @@ const SellerDashboard = () => {
                                 name="image" 
                                 accept="image/*" 
                                 onChange={handleEditChange} 
-                                className="w-full px-3 py-2 rounded-lg bg-white/80 border border-green-200 text-green-700 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-green-500 file:text-white hover:file:bg-green-600 text-sm"
+                                className="w-full px-3 py-2 rounded-lg bg-white border border-green-200 text-gray-700 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-green-500 file:text-white hover:file:bg-green-600 text-sm"
                               />
                             </div>
                             <div className="flex gap-2 pt-2">
@@ -627,7 +614,7 @@ const SellerDashboard = () => {
                               </button>
                               <button 
                                 type="button" 
-                                className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg font-semibold text-sm hover:bg-gray-600 transform hover:scale-105 transition-all duration-200 shadow-lg"
+                                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold text-sm hover:bg-gray-300 transform hover:scale-105 transition-all duration-200 shadow-lg"
                                 onClick={() => setEditId(null)} 
                                 disabled={editLoading}
                               >
@@ -659,4 +646,4 @@ const SellerDashboard = () => {
   );
 };
 
-export default SellerDashboard; 
+export default SellerDashboard;

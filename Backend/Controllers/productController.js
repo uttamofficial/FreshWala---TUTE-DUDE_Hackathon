@@ -321,3 +321,27 @@ exports.searchProducts = async (req, res) => {
     });
   }
 };
+
+// GET /api/products/search?category=fruits
+exports.searchByCategory = async (req, res) => {
+  try {
+    const { category } = req.query;
+
+    if (!category) {
+      return res.status(400).json({ message: "Category is required" });
+    }
+
+    const products = await Product.find({
+      category: category,
+      isActive: true,
+    });
+
+    res.status(200).json({
+      count: products.length,
+      products,
+    });
+  } catch (err) {
+    console.error("Error fetching products by category:", err);
+    res.status(500).json({ message: "Failed to fetch products", error: err.message });
+  }
+};

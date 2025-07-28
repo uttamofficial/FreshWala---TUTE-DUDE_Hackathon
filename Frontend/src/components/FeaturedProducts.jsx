@@ -1,11 +1,40 @@
 // src/components/FeaturedProducts.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Star, Heart, ShoppingCart, Truck, Award, TrendingUp, Clock } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { syncAddToCart } from '../store';
 
 const FeaturedProducts = () => {
+  const dispatch = useDispatch();
+  const [addedItems, setAddedItems] = useState({});
+
   // Helper for Indian price formatting
   const formatINR = (amount) => {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount);
+  };
+
+  // Handle add to cart
+  const handleAddToCart = (product, index) => {
+    // Convert featured product format to expected format
+    const cartProduct = {
+      _id: `featured-${index}`, // Temporary ID for demo
+      name: product.name,
+      pricePerUnit: product.price,
+      imageUrl: product.image,
+      unit: 'kg',
+      category: 'featured',
+      quantityAvailable: 50,
+      discount: 0,
+      quantity: 1
+    };
+    
+    dispatch(syncAddToCart(cartProduct));
+    
+    // Show added state
+    setAddedItems(prev => ({ ...prev, [index]: true }));
+    setTimeout(() => {
+      setAddedItems(prev => ({ ...prev, [index]: false }));
+    }, 1500);
   };
 
   // INR prices for demo
@@ -191,9 +220,19 @@ const FeaturedProducts = () => {
                   <p className="text-xs text-gray-500">Only few left in stock</p>
 
                   <div className="flex gap-2 pt-2">
-                    <button className="flex-1 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-600 hover:via-green-600 hover:to-emerald-700 text-white py-3 px-4 rounded-2xl text-sm font-bold shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-200 flex items-center justify-center gap-2 group-hover:shadow-2xl hover:shadow-emerald-300/50 transform hover:scale-105 relative overflow-hidden">
-                      <ShoppingCart className="w-4 h-4 transition-transform group-hover:rotate-12" />
-                      <span className="relative z-10">Add to Cart</span>
+                    <button 
+                      onClick={() => handleAddToCart(product, index)}
+                      disabled={addedItems[index]}
+                      className={`flex-1 py-3 px-4 rounded-2xl text-sm font-bold shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-200 flex items-center justify-center gap-2 group-hover:shadow-2xl hover:shadow-emerald-300/50 transform hover:scale-105 relative overflow-hidden ${
+                        addedItems[index]
+                          ? 'bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white cursor-not-allowed'
+                          : 'bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-600 hover:via-green-600 hover:to-emerald-700 text-white'
+                      }`}
+                    >
+                      <ShoppingCart className={`w-4 h-4 transition-transform ${addedItems[index] ? 'animate-spin' : 'group-hover:rotate-12'}`} />
+                      <span className="relative z-10">
+                        {addedItems[index] ? '✅ Added!' : 'Add to Cart'}
+                      </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full hover:translate-x-full transition-transform duration-500"></div>
                     </button>
                     <button className="bg-gradient-to-r from-gray-100 to-gray-200 hover:from-blue-50 hover:to-blue-100 text-gray-700 hover:text-blue-700 py-3 px-4 rounded-2xl text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-200 hover:border-blue-300 relative overflow-hidden group">

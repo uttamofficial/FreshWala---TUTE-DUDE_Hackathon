@@ -4,22 +4,32 @@ const Product = require('../models/Product');
 // Add or update item in cart
 exports.addToCart = async (req, res) => {
     try {
+        console.log('=== ADD TO CART STARTED ===');
+        console.log('User ID:', req.user?._id);
+        console.log('Request body:', req.body);
+        
         const userId = req.user._id;
         const { productId, quantity } = req.body;
 
         const product = await Product.findById(productId);
+        console.log('Product found:', product ? product.name : 'Not found');
+        
         if (!product || !product.isActive) {
+            console.log('Product not found or inactive');
             return res.status(404).json({ message: 'Product not found or inactive' });
         }
 
         if (quantity > product.quantityAvailable) {
+            console.log('Quantity not available:', quantity, 'Available:', product.quantityAvailable);
             return res.status(400).json({ message: 'Requested quantity not available' });
         }
 
         let cart = await Cart.findOne({ user: userId });
+        console.log('Existing cart found:', cart ? 'Yes' : 'No');
 
         const priceAtAddTime = product.pricePerUnit;
         const discountAtAddTime = product.discount || 0;
+        console.log('Price at add time:', priceAtAddTime, 'Discount:', discountAtAddTime);
 
         if (!cart) {
             cart = new Cart({
@@ -55,9 +65,12 @@ exports.addToCart = async (req, res) => {
             }, 0);
         }
 
+        console.log('Saving cart with total price:', cart.totalPrice);
         await cart.save();
+        console.log('=== ADD TO CART COMPLETED ===');
         res.status(200).json({ message: 'Item updated in cart', cart });
     } catch (err) {
+        console.error('=== ADD TO CART FAILED ===');
         console.error('Add to cart error:', err);
         res.status(500).json({ message: 'Failed to add to cart' });
     }
@@ -107,12 +120,18 @@ exports.removeFromCart = async (req, res) => {
 // Clear entire cart
 exports.clearCart = async (req, res) => {
     try {
+        console.log('=== CLEAR CART STARTED ===');
+        console.log('User ID:', req.user?._id);
+        
         await Cart.findOneAndUpdate(
             { user: req.user._id },
             { items: [], totalPrice: 0 }
         );
+        
+        console.log('=== CLEAR CART COMPLETED ===');
         res.status(200).json({ message: 'Cart cleared successfully' });
     } catch (err) {
+        console.error('=== CLEAR CART FAILED ===');
         console.error('Clear cart error:', err);
         res.status(500).json({ message: 'Failed to clear cart' });
     }

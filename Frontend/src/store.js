@@ -41,9 +41,23 @@ const cartSlice = createSlice({
     addToCart(state, action) {
       const existing = state.items.find(item => item._id === action.payload._id);
       if (existing) {
-        existing.quantity = (existing.quantity || 1) + 1;
+        // If product already exists, add the new quantity to existing quantity
+        existing.quantity = (existing.quantity || 1) + (action.payload.quantity || 1);
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        // If product doesn't exist, add it with the specified quantity
+        state.items.push({ ...action.payload, quantity: action.payload.quantity || 1 });
+      }
+    },
+    setCartItems(state, action) {
+      state.items = action.payload;
+    },
+    updateCartItem(state, action) {
+      const { _id, quantity } = action.payload;
+      const existing = state.items.find(item => item._id === _id);
+      if (existing && quantity > 0) {
+        existing.quantity = quantity;
+      } else if (existing && quantity <= 0) {
+        state.items = state.items.filter(item => item._id !== _id);
       }
     },
     removeFromCart(state, action) {
@@ -55,7 +69,35 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, setCartItems, updateCartItem, removeFromCart, clearCart } = cartSlice.actions;
+
+// Async action to sync cart with backend
+export const syncAddToCart = (product) => async (dispatch, getState) => {
+  try {
+    // Add to local state first
+    dispatch(addToCart(product));
+    
+    // Check if user is logged in
+    const { auth } = getState();
+    if (auth.isLoggedIn) {
+      // Sync with backend
+      await fetch('http://localhost:8000/api/cart/addToCart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          productId: product._id,
+          quantity: product.quantity || 1
+        })
+      });
+    }
+  } catch (error) {
+    console.error('Failed to sync cart with backend:', error);
+    // Cart is still added locally even if backend sync fails
+  }
+};
 
 const cartPersistConfig = {
   key: 'cart',

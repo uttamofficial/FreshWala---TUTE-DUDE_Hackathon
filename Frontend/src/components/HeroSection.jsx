@@ -1,5 +1,6 @@
 // src/components/HeroSection.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -26,10 +27,12 @@ const HeroSection = () => {
           <p className="text-xl sm:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow">
             Connect with trusted suppliers and get quality ingredients delivered fresh to fuel your street food business.
           </p>
-          <button className="relative bg-gradient-to-tr from-green-400 via-green-500 to-emerald-600 hover:from-green-500 hover:to-emerald-700 text-white font-bold py-4 px-10 rounded-2xl text-lg shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300">
-            <span className="relative z-10">Browse Our Products</span>
-            <span className="absolute inset-0 rounded-2xl border-2 border-green-300/60 animate-glow pointer-events-none" />
-          </button>
+          <Link to="/browse-products">
+            <button className="relative bg-gradient-to-tr from-green-400 via-green-500 to-emerald-600 hover:from-green-500 hover:to-emerald-700 text-white font-bold py-4 px-10 rounded-2xl text-lg shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300">
+              <span className="relative z-10">Browse Our Products</span>
+              <span className="absolute inset-0 rounded-2xl border-2 border-green-300/60 animate-glow pointer-events-none" />
+            </button>
+          </Link>
         </div>
       </div>
       {/* Scroll indicator */}
