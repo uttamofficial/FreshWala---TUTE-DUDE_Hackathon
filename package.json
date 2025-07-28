@@ -1,7 +1,17 @@
 {
+  "scripts": {
+    "build": "cd Frontend && npm run build",
+    "dev": "cd Frontend && npm run dev",
+    "start:backend": "cd Backend && npm start",
+    "start:frontend": "cd Frontend && npm run dev",
+    "install:all": "npm install && cd Frontend && npm install && cd ../Backend && npm install"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.6"
   }
 }

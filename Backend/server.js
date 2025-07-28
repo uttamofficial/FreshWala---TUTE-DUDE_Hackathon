@@ -6,7 +6,7 @@ const cors = require('cors'); // Import the CORS package
 const app = express();
 
 const authRoutes = require('./routes/authRoutes');
-const orderRoutes = require('./routes/orderRoutes');
+const orderRoutes = require('./Routes/orderRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes'); 
 const reviewRoutes = require('./routes/reviewRoutes');
