@@ -18,9 +18,9 @@ app.use(cookieParser());
 
 // CORS setup
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174'],  // Allow requests from specific frontend URLs
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specific HTTP methods
-  credentials: true,  // Allow cookies to be sent/received
+  origin: process.env.FRONTEND_URL || ['http://localhost:5173', 'http://localhost:5174', 'https://your-app-name.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));  // Apply the CORS policy
